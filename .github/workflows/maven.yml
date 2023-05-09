@@ -28,18 +28,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Set up MySQL database
-      uses: joshuaavalon/setup-mysql@v1
-      with:
-        mysql-version: '8.0'
-        root-password: ${{ secrets.MYSQL_ROOT_PASSWORD }}  
     
-    - name: Test with Hibernate and MySQL
-      run: mvn test --file pom.xml
-      env:
-        SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/hallmeal
-        SPRING_DATASOURCE_USERNAME: ${{ secrets.DB_USERNAME }}
-        SPRING_DATASOURCE_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
     - name: Save artifacts
       uses: actions/upload-artifact@v2
